@@ -1,6 +1,6 @@
 import { Pool } from "mysql2/promise";
-import { MySQLConnection } from "@infrastructure/database/MySQLConnection";
-import { Product } from "@domain/entities/Product";
+import { MySQLConnection } from "../../../infrastructure/database/MySQLConnection";
+import { Product } from "../../../domain/entities/Product";
 
 export class ProductRepository {
   private db: Pool;

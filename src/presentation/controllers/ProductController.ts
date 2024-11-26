@@ -1,8 +1,7 @@
-
 import { Request, Response } from "express";
-import { CreateProductUseCase } from "@application/use-cases/Product/CreateProduct";
-import { Product } from "@domain/entities/Product";
-import { HtppCodes } from "@shared/constants/serverHttpCodes";
+import { CreateProductUseCase } from "../../application/use-cases/Product/CreateProduct";
+import { Product } from "../../domain/entities/Product";
+import { HtppCodes } from "../../shared/constants/serverHttpCodes";
 
 export class ProductController {
 
@@ -18,7 +17,7 @@ export class ProductController {
 		try {
 			const product = await this.createProductUseCase.execute(name, barcode);
 
-			if (!product || product?.idProduct || product.idProduct <= 0) {
+			if (!product || product.idProduct <= 0) {
 				throw new Error('Error al registrar producto');
 			}
 

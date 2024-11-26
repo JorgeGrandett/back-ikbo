@@ -4,8 +4,8 @@
   "description": "Repositorio que alberga el back para la prueba técnica para Ingeniero de Desarrollo Senior para IBK S.A.S",
   "main": "main.js",
   "scripts": {
-    "start": "tsc && node -r module-alias/register dist/main.js",
-    "start:dev": "tsc && nodemon -r module-alias/register src/main.ts",
+    "start": "tsc && node dist/main.js",
+    "start:dev": "tsc && nodemon src/main.ts",
     "build": "tsc",
     "test": "jest",
     "coverage": "jest --coverage",
@@ -19,7 +19,6 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "joi": "^17.13.3",
-    "module-alias": "^2.2.3",
     "mysql2": "^3.11.4",
     "winston": "^3.15.0"
   },
@@ -37,8 +36,5 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.16.0"
-  },
-  "_moduleAliases": {
-    "@": "dist"
   }
 }

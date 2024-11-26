@@ -1,13 +1,13 @@
 import express from 'express';
-import logger from '@infrastructure/logging/logger';
-import productRoutes from "@presentation/routes/ProductRoutes";
+import logger from './infrastructure/logging/logger';
+import productRoutes from "./presentation/routes/ProductRoutes";
 import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const url =  process.env.URL ?? 'http://localhost';
 const port = process.env.PORT ?? 3000;
-
-dotenv.config();
 
 app.use(express.json());
 
