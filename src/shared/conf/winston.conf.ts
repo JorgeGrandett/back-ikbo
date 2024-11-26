@@ -1,6 +1,6 @@
 export const winstonConf = {
   file: {
-    level: process.env.LOGGER_LEVEL == 'dev' ? 'debug' : process.env.LOGGER_LEVEL || 'info',
+    level: process.env.LOGGER_LEVEL == 'dev' ? 'debug' : process.env.LOGGER_LEVEL ?? 'info',
     filename: 'logs/app.log',
     handleExceptions: true,
     json: true,

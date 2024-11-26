@@ -2,9 +2,13 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["src/*"]
+      "@domain/*": ["domain/*"],
+      "@application/*": ["application/*"],
+      "@presentation/*": ["presentation/*"],
+      "@infrastructure/*": ["infrastructure/*"],
+      "@shared/*": ["shared/*"]
     },
     "rootDir": "./src",
     "outDir": "./dist",

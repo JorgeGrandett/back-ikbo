@@ -1,12 +1,17 @@
 import express from 'express';
-import logger from '@/utils/logger';
+import logger from '@infrastructure/logging/logger';
+import productRoutes from "@presentation/routes/ProductRoutes";
+import * as dotenv from "dotenv";
 
 const app = express();
 const url =  process.env.URL ?? 'http://localhost';
 const port = process.env.PORT ?? 3000;
 
+dotenv.config();
+
 app.use(express.json());
 
+app.use("/api", productRoutes);
 app.get('/health', (req, res) => {
   res.send('Server OK').status(200);
 });
