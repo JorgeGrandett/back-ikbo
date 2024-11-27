@@ -8,5 +8,7 @@ const productController = new ProductController();
 const PRODUCT = 'product';
 
 router.post(`/${PRODUCT}`, validate(createProductSchema), async (req: Request, res: Response) => await productController.createProduct(req, res));
+router.get(`/${PRODUCT}`, async (req: Request, res: Response) => await productController.getProducts(req, res));
 
 export default router;
+    

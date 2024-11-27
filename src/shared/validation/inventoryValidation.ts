@@ -1,6 +1,7 @@
 const Joi = require('joi');
 
 const manageInventorySchema = Joi.object({
+    idInventory: Joi.number().positive().allow(0).optional(),
     idProduct: Joi.number().positive().allow(0).required(),
     batch: Joi.string().pattern(/^[a-zA-Z0-9\-\/]+$/).min(1).max(50).required(),
     amount: Joi.number().positive().required(),

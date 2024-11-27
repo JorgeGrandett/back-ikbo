@@ -24,7 +24,7 @@ export class InventoryController {
 		const { idProduct, batch, amount, expirationDate, operation } = req.body;
 
 		try {
-			const result = await this.manageInventoryUseCase.execute(idProduct, batch, amount, expirationDate, operation);
+			const result = await this.manageInventoryUseCase.execute(idProduct, batch, amount, expirationDate?.split('T')[0], operation);
 
 			if (!result) {
 				throw new Error(`Error al realizar la ${typeIventoryOperation(operation)} en el inventario del producto`);
