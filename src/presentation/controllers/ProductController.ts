@@ -1,18 +1,20 @@
 import { Request, Response } from "express";
 import { CreateProductUseCase } from "../../application/use-cases/Product/CreateProduct";
-import { Product } from "../../domain/entities/Product";
-import { HtppCodes } from "../../shared/constants/serverHttpCodes";
+import { HttpCodes } from "../../shared/constants/serverHttpCodes";
+import { HttpResponseFormat } from "../../shared/utils/responseFormat";
 
 export class ProductController {
 
 	private createProductUseCase: CreateProductUseCase;
+	private responseFormat: HttpResponseFormat;
 
 	constructor() {
 		this.createProductUseCase = new CreateProductUseCase();
+		this.responseFormat = new HttpResponseFormat();
 	}
 
 	async createProduct(req: Request, res: Response): Promise<void> {
-		const { idProduct, name, barcode, batch, amount, expiration_date } = req.body;
+		const { name, barcode } = req.body;
 
 		try {
 			const product = await this.createProductUseCase.execute(name, barcode);
@@ -20,10 +22,11 @@ export class ProductController {
 			if (!product || product.idProduct <= 0) {
 				throw new Error('Error al registrar producto');
 			}
-
-			res.status(HtppCodes.CREATED).json({ product });
+			this.responseFormat.set(product, `Producto ${name} registrado correctamente`, HttpCodes.CREATED);
+			res.status(HttpCodes.CREATED).json(this.responseFormat.get());
 		} catch (error: any) {
-			res.status(HtppCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
+			this.responseFormat.set('', error.message, HttpCodes.INTERNAL_SERVER_ERROR);
+			res.status(HttpCodes.INTERNAL_SERVER_ERROR).json(this.responseFormat.get());
 		}
 	}
 }

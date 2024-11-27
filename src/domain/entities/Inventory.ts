@@ -1,6 +1,6 @@
 export class Inventory {
   constructor(
-    public readonly idInventory: number,
+    public idInventory: number,
     public idProduct: number,
     public batch: string,
     public amount: number,

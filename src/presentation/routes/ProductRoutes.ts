@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { ProductController } from "../../presentation/controllers/ProductController";
+import { ProductController } from "../controllers/ProductController";
 import validate from "../middlewares/validateMiddleware";
 import { createProductSchema } from "../../shared/validation/productValidation";
 

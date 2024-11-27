@@ -4,16 +4,16 @@ import { MySQLConnection } from "../../../infrastructure/database/MySQLConnectio
 export class CreateProductUseCase {
     async execute(name: string, barcode: string): Promise<Product | null> {
 
-        return { idProduct: 2, name: 'creado', barcode: '1231231231' };
-        // const db = MySQLConnection.getInstance();
-        // const query = "SELECT id, name, email FROM users WHERE id = ?";
-        // const [rows] = await db.query(query, [name, barcode]);
+        const db = MySQLConnection.getInstance();
+        const query = "CALL create_product(?, ?)";
+        const [row] = await db.query(query, [name, barcode]);
 
-        // if (Array.isArray(rows) && rows.length > 0) {
-        //     const userRow = rows[0] as { idProduct: number; name: string; barcode: string };
-        //     return { idProduct: userRow.idProduct, name: userRow.name, barcode: userRow.barcode };
-        // }
+        if (Array.isArray(row) && row.length > 0) {
+            const result = row[0] as Array<object>;
+            const resultRow = result[0] as { id_product: number };
+            return { idProduct: resultRow.id_product, name: name, barcode: barcode };
+        }
 
-        // return null;
+        return null;
     }
 }
